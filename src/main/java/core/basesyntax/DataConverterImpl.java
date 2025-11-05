@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class DataConverterImpl implements DataConverter {
     @Override
     public List<FruitTransaction> convertToTransaction(List<String> lines) {
-        return  lines.stream()
+        return lines.stream()
                 .skip(1)
                 .map(line -> {
                     String[] parts = line.split(",");
@@ -14,7 +14,7 @@ public class DataConverterImpl implements DataConverter {
                     transaction.setOperation(FruitTransaction.Operation.fromCode(parts[0]));
                     transaction.setFruit(parts[1]);
                     transaction.setQuantity(Integer.parseInt(parts[2]));
-                    return  transaction;
+                    return transaction;
                 })
                 .collect(Collectors.toList());
     }

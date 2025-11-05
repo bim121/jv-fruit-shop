@@ -8,15 +8,12 @@ import java.util.Map;
  * Feel free to remove this class and create your own.
  */
 public class HelloWorld {
-    // HINT: In the `public static void main(String[] args)` it is better to create instances of your classes, 
-    // and call their methods, but do not write any business logic in the `main` method!
     public static void main(String[] args) {
 
         FileReader fileReader = new FileReaderImpl();
         List<String> inputReport = fileReader.read("reportToRead.csv");
 
         DataConverter dataConverter = new DataConverterImpl();
-        List<FruitTransaction> transactions = dataConverter.convertToTransaction(inputReport);
 
         Map<FruitTransaction.Operation, OperationHandler> handlers = new HashMap<>();
         handlers.put(FruitTransaction.Operation.BALANCE, new BalanceOperation());
@@ -26,6 +23,7 @@ public class HelloWorld {
 
         OperationStrategy strategy = new OperationStrategyImpl(handlers);
         ShopService shopService = new ShopServiceImpl(strategy);
+        List<FruitTransaction> transactions = dataConverter.convertToTransaction(inputReport);
         shopService.process(transactions);
 
         ReportGenerator reportGenerator = new ReportGeneratorImpl();
