@@ -8,7 +8,8 @@ public class PurchaseOperation implements OperationHandler {
     public void apply(FruitTransaction t) {
         int currentQty = Storage.getQuantity(t.getFruit());
         if (currentQty < t.getQuantity()) {
-            throw new RuntimeException("Not enough " + t.getFruit() + " in stock for purchase. Current: "
+            throw new RuntimeException("Not enough "
+                    + t.getFruit() + " in stock for purchase. Current: "
                     + currentQty + ", requested: " + t.getQuantity());
         }
         Storage.addQuantity(t.getFruit(), -t.getQuantity());

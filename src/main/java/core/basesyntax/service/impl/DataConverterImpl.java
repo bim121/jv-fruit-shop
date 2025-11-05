@@ -11,14 +11,15 @@ public class DataConverterImpl implements DataConverter {
         List<FruitTransaction> transactions = new ArrayList<>();
         for (int i = 1; i < lines.size(); i++) {
             String line = lines.get(i).trim();
-            if (line.isEmpty()) continue;
+            if (line.isEmpty()) {
+                continue;
+            }
             String[] parts = line.split(",");
             if (parts.length != 3) {
                 throw new IllegalArgumentException("Malformed line at "
                         + (i + 1) + ": " + line);
             }
             String type = parts[0].trim();
-            String fruit = parts[1].trim();
             int quantity;
             try {
                 quantity = Integer.parseInt(parts[2].trim());
@@ -37,6 +38,7 @@ public class DataConverterImpl implements DataConverter {
                 throw new IllegalArgumentException("Unknown operation type at line "
                         + (i + 1) + ": " + line);
             }
+            String fruit = parts[1].trim();
             FruitTransaction transaction = new FruitTransaction(op, fruit, quantity);
             transactions.add(transaction);
         }
