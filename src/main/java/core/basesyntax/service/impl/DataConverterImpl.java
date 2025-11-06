@@ -31,15 +31,15 @@ public class DataConverterImpl implements DataConverter {
                 throw new IllegalArgumentException("Negative quantity not allowed at line "
                         + (i + 1) + ": " + line);
             }
-            FruitTransaction.Operation op;
+            FruitTransaction.Operation operation;
             try {
-                op = FruitTransaction.Operation.fromCode(type);
+                operation = FruitTransaction.Operation.fromCode(type);
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException("Unknown operation type at line "
                         + (i + 1) + ": " + line);
             }
             String fruit = parts[1].trim();
-            FruitTransaction transaction = new FruitTransaction(op, fruit, quantity);
+            FruitTransaction transaction = new FruitTransaction(operation, fruit, quantity);
             transactions.add(transaction);
         }
         return transactions;

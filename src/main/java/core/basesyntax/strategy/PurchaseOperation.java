@@ -5,13 +5,13 @@ import core.basesyntax.model.FruitTransaction;
 
 public class PurchaseOperation implements OperationHandler {
     @Override
-    public void apply(FruitTransaction t) {
-        int currentQty = Storage.getQuantity(t.getFruit());
-        if (currentQty < t.getQuantity()) {
+    public void apply(FruitTransaction transaction) {
+        int currentQty = Storage.getQuantity(transaction.getFruit());
+        if (currentQty < transaction.getQuantity()) {
             throw new RuntimeException("Not enough "
-                    + t.getFruit() + " in stock for purchase. Current: "
-                    + currentQty + ", requested: " + t.getQuantity());
+                    + transaction.getFruit() + " in stock for purchase. Current: "
+                    + currentQty + ", requested: " + transaction.getQuantity());
         }
-        Storage.addQuantity(t.getFruit(), -t.getQuantity());
+        Storage.addQuantity(transaction.getFruit(), -transaction.getQuantity());
     }
 }

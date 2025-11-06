@@ -5,7 +5,7 @@ import core.basesyntax.model.FruitTransaction;
 
 public class BalanceOperation implements OperationHandler {
     @Override
-    public void apply(FruitTransaction t) {
-        Storage.setQuantity(t.getFruit(), t.getQuantity());
+    public void apply(FruitTransaction transaction) {
+        Storage.setQuantity(transaction.getFruit(), transaction.getQuantity());
     }
 }
